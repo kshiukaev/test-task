@@ -1,2 +1,2 @@
-# test-page
-Credit card validation form
+# Форма валидации кредитной карты
+Тестовое задание
