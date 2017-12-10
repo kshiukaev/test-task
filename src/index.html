@@ -31,35 +31,47 @@
 					</h2>
 					<fieldset class="card-front__num">
 						<p class="card-front__info">Номер карты</p>
-						<input type="text" class="card-front__input" placeholder="1234">
-						<input type="text" class="card-front__input" placeholder="1234">
-						<input type="text" class="card-front__input" placeholder="1234">
-						<input type="text" class="card-front__input" placeholder="1234">
+						<input type="text" class="card-front__input" placeholder="1234" id="one">
+						<input type="text" class="card-front__input" placeholder="1234" id="two">
+						<input type="text" class="card-front__input" placeholder="1234" id="three">
+						<input type="text" class="card-front__input" placeholder="1234" id="four">
 					</fieldset>
+
 					<fieldset class="card-front__exp">
 						<p class="card-front__info">Срок действия</p>
-						<select name="" id="" class="card-front__sel">Год</select>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
+						<select name="" id="" class="card-front__sel">
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">010</option>
+							<option value="11">011</option>
+							<option value="12">012</option>
+						</select>
 
-						<select name="" id="" class="card-front__sel">Месяц</select>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
+						<select name="" id="" class="card-front__sel">
+							<option value="1">2017</option>
+							<option value="2">2018</option>
+							<option value="3">2019</option>
+							<option value="4">2020</option>
+							<option value="5">2021</option>
+							<option value="6">2022</option>
+							<option value="7">2023</option>
+							<option value="8">2024</option>
+						</select>
 					</fieldset>
+					
+					<label for="cvc" class="card-front__cvc">Код CVV2 / CVC2
+						<input type="text" id="cvc">
+					</label>
+
+					<input class="card-front__card-holder" type="text" id="card-holder" placeholder="Держитель карты">
+					
 				</div>
 				<div class="card-back">
 					
