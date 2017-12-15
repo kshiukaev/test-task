@@ -1,0 +1,24 @@
+{
+  "name": "test-task",
+  "description": "Тестовое задание",
+  "main": "index.js",
+  "authors": [
+    "Konstantin Shiukaev"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kshiukaev/test-task",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#^7.0.0",
+    "jquery": "3.2.1"
+  },
+  "devDependencies": {
+    "modernizr": "^3.5.0"
+  }
+}

@@ -1,14 +1,15 @@
-const 	gulp = require("gulp"),
-		autoprefixer = require("gulp-autoprefixer"),
-		sass = require("gulp-sass"),
-		bs = require("browser-sync"),
-		rename = require("gulp-rename"),
-		uglify = require("gulp-uglify"),
-		concat = require("gulp-concat"),
-		gulpCopy = require('gulp-copy'),
-		cleanCSS = require("gulp-clean-css");
+const 	gulp = 			require("gulp"),
+		autoprefixer = 	require("gulp-autoprefixer"),
+		sass = 			require("gulp-sass"),
+		bs = 			require("browser-sync"),
+		rename = 		require("gulp-rename"),
+		uglify = 		require("gulp-uglify"),
+		concat = 		require("gulp-concat"),
+		gulpCopy = 		require('gulp-copy'),
+		cleanCSS = 		require("gulp-clean-css");
 
 gulp.task('bs', ['styles', 'scripts'], function() {
+	console.log("------- Запуск сервера");
 	bs.init({
 		server: {
 			baseDir: "./app"
@@ -18,23 +19,28 @@ gulp.task('bs', ['styles', 'scripts'], function() {
 });
 
 gulp.task('styles', function () {
-	return gulp.src('./src/sass/*.sass')
+	console.log("------- Сборка стилей");
+	return gulp.src('./src/sass/*.scss')
 	.pipe(sass({includePaths: require('node-bourbon').includePaths}).on('error', sass.logError))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer({browsers: ['last 15 versions'], cascade: false}))
 	.pipe(cleanCSS())
-	.pipe(gulp.dest('app/css'))
+	.pipe(gulp.dest('./app/css'))
 	.pipe(bs.stream());
 });
+
 gulp.task('copy', function () {
-    gulp.src('./src/index.html')
-        .pipe(gulp.dest('./app/'));
+	console.log("------- Копирование index.html");
+    	gulp.src('./src/*.html')
+        .pipe(gulp.dest('./app'))
+        .pipe(bs.stream());
 });
 
-gulp.task('scripts', function() {
+gulp.task('libs', function() {
+	console.log("------- Сборка js-библиотек");
 	return gulp.src([
 		'./app/libs/modernizr/modernizr.js',
-		'./app/libs/jquery/jquery-1.11.2.min.js',
+		'./app/libs/jquery.js',
 		'./app/libs/waypoints/waypoints.min.js',
 		'./app/libs/animate/animate-css.js',
 		])
@@ -43,11 +49,26 @@ gulp.task('scripts', function() {
 		.pipe(gulp.dest('./app/js/'));
 });
 
-gulp.task('watch', function () {
-	gulp.watch('src/sass/*.sass', ['styles']);
-	gulp.watch('app/libs/**/*.js', ['scripts']);
-	gulp.watch('app/js/*.js').on("change", bs.reload);
-	gulp.watch('app/*.html').on('change', bs.reload);
+gulp.task('scripts', function() {
+	console.log("------- Сборка скриптов");
+	return gulp.src('./src/js/main.js')
+		.pipe(concat('main.js'))
+		.pipe(uglify()) //Minify libs.js
+		.pipe(gulp.dest('./app/js/'))
+		.pipe(bs.stream());
 });
 
-gulp.task('default', ['copy','bs', 'watch']);
+gulp.task('fonts', function () {
+  console.log('---------- Копирование шрифтов');
+  return gulp.src('./src/fonts/*.{ttf,woff,woff2,eot,svg}')
+    .pipe(gulp.dest('./app/fonts/'));
+});
+gulp.task('watch', function () {
+	console.log("------- Слежение за изменениями");
+	gulp.watch('./src/sass/*.scss', ['styles']);
+	gulp.watch('./app/libs/**/*.js', ['libs']);
+	gulp.watch('./src/js/**/*.js', ['scripts']);
+	gulp.watch('./src/*.html', ['copy']);
+});
+
+gulp.task('default', ['copy','libs','scripts','fonts','bs','watch']);

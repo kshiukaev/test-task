@@ -1,0 +1,75 @@
+@import "src/sass/Tele2RussiaText.scss";
+@import "src/sass/flavored-reset-and-normalize.scss";
+
+* {
+  box-sizing: border-box;
+}
+body{
+  background-color: #000;
+}
+.wrapper{
+  margin: 80px auto;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-content: flex-start;
+  
+}
+.container{
+  background-color: #f7f8f8;
+  max-width: 680px;
+}
+
+.nav-menu{
+  min-width: 318px;
+  line-height: 20px;
+}
+.nav-menu__list{
+  margin: 0;
+  padding: 0;
+  background-color: #191c24;
+  list-style-type: none;
+}
+.nav-menu__item{
+  border-bottom: #24532b;
+}
+.nav-menu__item:before{
+
+}
+.nav-menu__link{
+  text-decoration: none;
+  outline: none;
+  display: block;
+  padding: 20px 30px; 
+  letter-spacing: 1px;
+  font-weight: 300;
+  transition: .1s linear;
+  color: white;
+  font-family: "Tele2 Russia Text";
+  border-bottom: 1px solid #20232b;
+}
+
+.nav-menu__link:hover{
+    background-color: #1f2229;
+    color: #fff;
+}
+
+.nav-menu__item--active{
+  background-color: #2a2d37;
+  color: #808592;
+}
+
+.main{
+  padding: 0 30px;
+  flex: 1 1;
+  background-color: #f7f8f8;
+}
+.pay-info{
+  color: #535864;
+  font-family: "Tele2 Russia Text";
+  font-weight: bold;
+}
+.card-front__head, .pay-info__head{
+  font-family: "Tele2 Russia Text";
+  color: #535864;
+}
