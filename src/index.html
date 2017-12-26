@@ -1,98 +1,119 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<link rel="stylesheet" href="css/main.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0 maximum-scale=1.0">
+
+    <!-- <link rel="stylesheet" href="css/dropdown.min.css"> -->
+     <link rel="stylesheet" type="text/css" href="css/selectric.min.css">
+     <link rel="stylesheet" href="css/main.min.css">  
+    <script src="js/jquery.js"></script>
+    <script src="js/libs.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modernizr.js"></script>
+    
+		
+
 </head>
+
 <body>
-	<div class="wrapper">
+    <div class="wrapper">
+        <div class="nav-menu">
+            <ul class="nav-menu__list">
+                <li class="nav-menu__item"><a href="#" class="nav-menu__link">Личный кабинет</a></li>
+                <li class="nav-menu__item"><a href="#" class="nav-menu__link">Платежи</a></li>
+                <li class="nav-menu__item"><a href="#" class="nav-menu__link">История платежей</a></li>
+                <li class="nav-menu__item"><a href="#" class="nav-menu__link">Настройки</a></li>
+                <li class="nav-menu__item"><a href="#" class="nav-menu__link">Выйти</a></li>
+            </ul>
+        </div>
+        <main class="main">
+            <!-- \\\\\\\\\\\\\\\\\\\\\\\\ Информация о платеже -->
+            <div class="pay-info">
+                <div class="container">
+                    <h2 class="pay-info__head">Информация по оплате:</h2>
+                    <div class="pay-info__acc">
+                        <p>Номер счета: </p>
+                        <p>Сумма платежа: </p>
+                    </div>
+                    <div class="pay-info__amount">
+                        <p>87123658716587</p>
+                        <p>100 руб.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- \\\\\\\\\\\\\\\\\\\\\\\\ Форма валидации банковской карты -->
+            <form action="" class="cards">
+                <div class="container">
+                    <h2 class="card-front__head">Данные банковской карты</h2>
+                    <div class="card-front">
+                        <fieldset class="card-front__num">
+                            <p class="card-front__info">Номер карты</p>
+                            <input type="text" class="card-front__input" id="one">
+                            <input type="text" class="card-front__input" id="two">
+                            <input type="text" class="card-front__input" id="three">
+                            <input type="text" class="card-front__input" id="four">
+                        </fieldset>
+                        <fieldset class="card-front__exp">
+                            <p class="card-front__info">Срок действия</p>
+                            <select name="dropdown" id="dropdown" class="card-front__sel--mon">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select name="dropdown" id="dropdown" class="card-front__sel--year">
+                                <option class="opt" value="1">2017</option>
+                                <option class="opt" value="2">2018</option>
+                                <option class="opt" value="3">2019</option>
+                                <option class="opt" value="4">2020</option>
+                                <option class="opt" value="5">2021</option>
+                                <option class="opt" value="6">2022</option>
+                                <option class="opt" value="7">2023</option>
+                                <option class="opt" value="8">2024</option>
+                                <option class="opt" value="9">2025</option>
+                            </select>
+                        </fieldset>
+                        <input class="card-front__card-holder" type="text" id="card-holder" placeholder="Держатель карты" onfocus="this.placeholder=''" onblur="this.placeholder='Держатель карты'">
+                        <input type="submit" class="cards__submit" value="Оплатить">
+                    </div>
+                    <div class="card-back">
+                        <div class="line"></div>
+                        <div class="card-back__cvc">
+                            <label for="cvc">Код CVV2 / CVC2</label>
+                            <div class="tooltip">
+                                <input type="text" id="cvc">
+                                <span class="tooltiptext">Tooltip text</span>
+                            </div>
+                        </div>
+                    </div>
 
-		<div class="nav-menu">
-			<ul class="nav-menu__list">
-				<li class="nav-menu__item"><a href="#" class="nav-menu__link">Личный кабинет</a></li>
-				<li class="nav-menu__item"><a href="#" class="nav-menu__link">Платежи</a></li>
-				<li class="nav-menu__item"><a href="#" class="nav-menu__link">История платежей</a></li>
-				<li class="nav-menu__item"><a href="#" class="nav-menu__link">Настройки</a></li>
-				<li class="nav-menu__item"><a href="#" class="nav-menu__link">Выйти</a></li>
-			</ul>
-		</div>
-			
-		<main class="main">
-			<div class="container">
-				<div class="pay-info">
-					<h2 class="pay-info__head">Информация по оплате:</h2>
-					<p class="pay-info__acc">Номер счета: 87123658716587</p>
-					<p class="pay-info__amount">Сумма платежа: 100 руб.</p>
-				</div>
-				<form action="" class="cards">
-						<div class="card-front">
-							<h2 class="card-front__head">
-								Данные банковской карты
-							</h2>
-							<fieldset class="card-front__num">
-								<p class="card-front__info">Номер карты</p>
-								<input type="text" class="card-front__input" placeholder="1234" id="one">
-								<input type="text" class="card-front__input" placeholder="1234" id="two">
-								<input type="text" class="card-front__input" placeholder="1234" id="three">
-								<input type="text" class="card-front__input" placeholder="1234" id="four">
-							</fieldset>
+                </div>
+                
+            </form>
+            <!-- \\\\\\\\\\\\\\\\\\\\\\\\ Текстовый блок -->
+            <div class="text-block">
+                <div class="container">
+                    <p class="text-block__parag">Исходя из астатической системы координат Булгакова, соединение стабильно. Краевая часть артезианского бассейна, которая в настоящее время находится ниже уровня моря, ослабляет систематический уход. Лисичка традиционно трансформирует прецессионный годовой параллакс.</p>
+                    <p class="text-block__parag">Выклинивание абсолютно аккумулирует твердый pадиотелескоп Максвелла.</p>
+                    <p class="text-block__parag">Алмаз слагает горст. Делювий длительно колеблет лазерный подвижный объект.</p>
+                    <p class="text-block__parag">Устойчивость, например, параллельна. Аргумент перигелия определяет боксит. Проекция вертикально дает уходящий диабаз. Если пренебречь малыми величинами, то видно, что угол крена покрывает вибрирующий волчок, что обусловлено не только первичными неровностями эрозионно-тектонического рельефа поверхности кристаллических пород, но и проявлениями долее поздней блоковой тектоники. Засветка неба заставляет иначе взглянуть на то, что такое волчок.</p>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
 
-							<fieldset class="card-front__exp">
-								<p class="card-front__info">Срок действия</p>
-								<select name="" id="" class="card-front__sel">
-									<option value="1">01</option>
-									<option value="2">02</option>
-									<option value="3">03</option>
-									<option value="4">04</option>
-									<option value="5">05</option>
-									<option value="6">06</option>
-									<option value="7">07</option>
-									<option value="8">08</option>
-									<option value="9">09</option>
-									<option value="10">010</option>
-									<option value="11">011</option>
-									<option value="12">012</option>
-								</select>
-
-								<select name="" id="" class="card-front__sel">
-									<option value="1">2017</option>
-									<option value="2">2018</option>
-									<option value="3">2019</option>
-									<option value="4">2020</option>
-									<option value="5">2021</option>
-									<option value="6">2022</option>
-									<option value="7">2023</option>
-									<option value="8">2024</option>
-									<option value="9">2025</option>
-								</select>
-								<label for="cvc" class="card-front__cvc">Код CVV / CVC
-								<input type="text" id="cvc">
-							</label>
-							</fieldset>
-							
-							<input class="card-front__card-holder" type="text" id="card-holder" placeholder="Держитель карты">
-							
-						</div>
-						<div class="card-back">
-							
-						</div>
-				<input type="submit" value="Оплатить">
-			</form>
-				<div class="text-block">
-					<p class="text-block__parag">Исходя из астатической системы координат Булгакова, соединение стабильно. Краевая часть артезианского бассейна, которая в настоящее время находится ниже уровня моря, ослабляет систематический уход. Лисичка традиционно трансформирует прецессионный годовой параллакс.</p>
-					<p class="text-block__parag">Выклинивание абсолютно аккумулирует твердый pадиотелескоп Максвелла.</p>
-					<p class="text-block__parag">Алмаз слагает горст. Делювий длительно колеблет лазерный подвижный объект.</p>
-					<p class="text-block__parag">Устойчивость, например, параллельна. Аргумент перигелия определяет боксит. Проекция вертикально дает уходящий диабаз. Если пренебречь малыми величинами, то видно, что угол крена покрывает вибрирующий волчок, что обусловлено не только первичными неровностями эрозионно-тектонического рельефа поверхности кристаллических пород, но и проявлениями долее поздней блоковой тектоники. Засветка неба заставляет иначе взглянуть на то, что такое волчок.</p>
-				</div>
-			</div>
-		</main>
-	</div>
-
-	
-	
 </body>
+
 </html>

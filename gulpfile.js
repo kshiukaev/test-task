@@ -1,3 +1,5 @@
+"use strict";
+
 const 	gulp = 			require("gulp"),
 		autoprefixer = 	require("gulp-autoprefixer"),
 		sass = 			require("gulp-sass"),
@@ -6,6 +8,7 @@ const 	gulp = 			require("gulp"),
 		uglify = 		require("gulp-uglify"),
 		concat = 		require("gulp-concat"),
 		gulpCopy = 		require('gulp-copy'),
+		sourcemaps =		require('gulp-sourcemaps'),
 		cleanCSS = 		require("gulp-clean-css");
 
 gulp.task('bs', ['styles', 'scripts'], function() {
@@ -18,13 +21,35 @@ gulp.task('bs', ['styles', 'scripts'], function() {
 	});
 });
 
-gulp.task('styles', function () {
-	console.log("------- Сборка стилей");
-	return gulp.src('./src/sass/*.scss')
-	.pipe(sass({includePaths: require('node-bourbon').includePaths}).on('error', sass.logError))
+gulp.task('css-libs', function () {
+	console.log("------- Сборка библиотек стилей");
+	return gulp.src([
+		// './node_modules/formstone/dist/css/themes/light.css',
+		// './node_modules/formstone/dist/css/themes/light/dropdown.css'
+		'./Selectric/public/selectric.css'
+		])
+	.pipe(sourcemaps.init())
+	.pipe(sass({
+		includePaths: require('node-bourbon').includePaths}).on('error', sass.logError))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer({browsers: ['last 15 versions'], cascade: false}))
 	.pipe(cleanCSS())
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest('./app/css'))
+	.pipe(bs.stream());
+});
+
+
+gulp.task('styles', function () {
+	console.log("------- Сборка стилей");
+	return gulp.src('./src/sass/*.scss')
+	.pipe(sourcemaps.init())
+	.pipe(sass({
+		includePaths: require('node-bourbon').includePaths}).on('error', sass.logError))
+	.pipe(rename({suffix: '.min', prefix : ''}))
+	.pipe(autoprefixer({browsers: ['last 15 versions'], cascade: false}))
+	.pipe(cleanCSS())
+	.pipe(sourcemaps.write())
 	.pipe(gulp.dest('./app/css'))
 	.pipe(bs.stream());
 });
@@ -36,24 +61,31 @@ gulp.task('copy', function () {
         .pipe(bs.stream());
 });
 
-gulp.task('libs', function() {
-	console.log("------- Сборка js-библиотек");
+gulp.task('js-libs', function() {
+	console.log("------- Сборка библиотек скриптов");
 	return gulp.src([
-		'./app/libs/modernizr/modernizr.js',
-		'./app/libs/jquery.js',
-		'./app/libs/waypoints/waypoints.min.js',
-		'./app/libs/animate/animate-css.js',
-		])
+			'./bower_components/jquery/dist/jquery.js',
+			'./bower_components/jquery-ui/jquery-ui.js',
+			'./Selectric/public/jquery.selectric.js',
+			// './node_modules/formstone/dist/js/core.js',
+			// './node_modules/formstone/dist/js/touch.js',
+			// './node_modules/formstone/dist/js/scrollbar.js',
+			// './node_modules/formstone/dist/js/dropdown.js'
+			])
+		.pipe(sourcemaps.init())
 		.pipe(concat('libs.js'))
 		.pipe(uglify()) //Minify libs.js
-		.pipe(gulp.dest('./app/js/'));
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest('./app/js/'))
+		.pipe(bs.stream());
 });
-
-gulp.task('scripts', function() {
+gulp.task('scripts',['js-libs'], function() {
 	console.log("------- Сборка скриптов");
 	return gulp.src('./src/js/main.js')
+		.pipe(sourcemaps.init())
 		.pipe(concat('main.js'))
 		.pipe(uglify()) //Minify libs.js
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./app/js/'))
 		.pipe(bs.stream());
 });
@@ -71,4 +103,4 @@ gulp.task('watch', function () {
 	gulp.watch('./src/*.html', ['copy']);
 });
 
-gulp.task('default', ['copy','libs','scripts','fonts','bs','watch']);
+gulp.task('default', ['copy','css-libs','js-libs','scripts','fonts','bs','watch']);

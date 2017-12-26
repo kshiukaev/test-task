@@ -1,24 +1,16 @@
 @font-face {
-    font-family: 'Tele2 Russia Text';
+    font-family: 'Tele2 Russia Text Bold';
     src: url('./fonts/Tele2RussiaTextBold.eot');
     src: url('./fonts/Tele2RussiaTextBold.eot?#iefix') format('embedded-opentype'),
         url('./fonts/Tele2RussiaTextBold.woff') format('woff'),
         url('./fonts/Tele2RussiaTextBold.woff2') format('woff2'),
         url('./fonts/Tele2RussiaTextBold.ttf') format('truetype');
-    font-weight: 700;
+    font-weight: 900;
     font-style: bold;
     font-stretch: bold;
     unicode-range: U+0020-00F7;
 }
 
-@font-face {
-    font-family: 'Lobster';
-    src: url('./fonts/Lobster-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-00F7;
-}
 $lobster: 'Lobster';
 $tele2 : 'Tele2 Russia Text';
 $arial : 'arial';

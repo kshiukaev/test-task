@@ -1,28 +1,25 @@
-@import "src/sass/Tele2RussiaText.scss";
+@import "src/sass/_fonts.scss";
 @import "src/sass/flavored-reset-and-normalize.scss";
 
-* {
-  box-sizing: border-box;
-}
 body{
   background-color: #000;
 }
+///////////////////////////////////////////////////////////////////////////
 .wrapper{
   margin: 80px auto;
   width: 100%;
-  max-width: 1000px;
+  max-width: 950px;
   display: flex;
   align-content: flex-start;
-  
 }
 .container{
-  background-color: #f7f8f8;
-  max-width: 680px;
+  position: relative;
+  margin: 0 30px 0 30px;
+  max-width: 640px;  
 }
-
+/////////////////////////////// Навигационное меню ////////////////////////
 .nav-menu{
-  min-width: 318px;
-  line-height: 20px;
+  min-width: 320px;
 }
 .nav-menu__list{
   margin: 0;
@@ -31,45 +28,221 @@ body{
   list-style-type: none;
 }
 .nav-menu__item{
-  border-bottom: #24532b;
-}
-.nav-menu__item:before{
+  border-bottom: #2a2d37 1px solid;
 
+}.nav-menu__item--active{
+  background-color: #2a2d37;
+  color: #808592;
 }
 .nav-menu__link{
   text-decoration: none;
-  outline: none;
   display: block;
-  padding: 20px 30px; 
-  letter-spacing: 1px;
-  font-weight: 300;
+  line-height: 1.0em;
+  padding: 29px 29px 27px 29px; 
+  font-weight: 700;
+  font-size: 1.13em;
   transition: .1s linear;
   color: white;
-  font-family: "Tele2 Russia Text";
-  border-bottom: 1px solid #20232b;
+  font-family: $tele2;
+  
 }
-
+.nav-menu__item:last-child{
+  border-bottom:0;
+}
+.nav-menu__item:last-child a{
+  color: #808592;
+}
 .nav-menu__link:hover{
-    background-color: #1f2229;
-    color: #fff;
-}
-
-.nav-menu__item--active{
   background-color: #2a2d37;
   color: #808592;
 }
 
+/////////////////////////////// Основной контент ////////////////////////
 .main{
-  padding: 0 30px;
-  flex: 1 1;
   background-color: #f7f8f8;
+  min-width: 640px; 
 }
 .pay-info{
+  margin-top: 41px;
   color: #535864;
-  font-family: "Tele2 Russia Text";
-  font-weight: bold;
+  font-family: $arial;
 }
-.card-front__head, .pay-info__head{
-  font-family: "Tele2 Russia Text";
+.pay-info__head, 
+.card-front__head{
+  font-weight: 700;
+  font-family: $tele2;
   color: #535864;
+  font-size: 1.40em;
+  margin: 24px 0 22px 0;
+}
+.pay-info__acc, 
+.pay-info__amount{
+  display: inline-block;
+}
+.pay-info__acc>p, 
+.pay-info__amount>p{
+  margin-right: 34px;
+  margin-bottom: 11px;
+}
+.pay-info__acc{
+  color: #8494ab;
+}
+.cards{
+  position: relative;
+  width: 640px;
+  height: 406px;
+}
+.card-front{
+  border: 1px solid #e4e9ee;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 15px;
+  width: 349px;
+  height: 236px;
+  position: absolute;
+  z-index: 100;
+  top: 45px;
+  background-color: #F7F8F8;
+
+  &__num{
+    box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+  &__info{
+    margin-top: 9px;
+    margin-bottom: 6px;
+    color: #8494ab;
+  }
+  &__input{
+    border: 1px solid #e4e9ee;
+    width: 21%;
+    padding: 7px 7px 7px 8px;
+    font-size: 1.4em;
+    margin-left: -1px;
+    margin-right: 4px;
+    margin-bottom: -10px;
+    }
+  &__input:hover{
+      border: 1px solid #a2a2a2;
+  }
+  // &__sel--mon{
+  //   width: 22%;
+  //   padding: 13px 7px 11px 13px;
+  //   font-size: 1em;
+  //   margin-right: 5px;
+  //   border: 1px solid #e4e9ee;
+  //   color: #535864;
+  //   font-size: 1em;
+  //   background-image: url("icons/dropdown.png");
+  //   background-repeat: no-repeat;
+  //   background-position: 83% 50%;
+  //   appearance: none!important;
+  //   cursor: pointer;
+  // }
+
+  // &__sel--year{
+  //   width: 27%;
+  //   padding: 13px 7px 11px 13px;
+  //   font-size: 1em;
+  //   margin-right: 5px;
+  //   border: 1px solid #e4e9ee;
+  //   color: #535864;
+  //   background-image: url("icons/dropdown.png");
+  //   background-repeat: no-repeat;
+  //   background-position: 90% 50%; 
+  //   appearance: none!important;
+  //   cursor: pointer;
+  // }
+  &__card-holder{
+    border: 1px solid #e4e9ee;
+    width: 100%;
+    padding: 12px 7px 10px 8px;
+    font-size: 1em;
+    margin: 9px 5px 0 0;  
+  }
+  &__card-holder::placeholder{
+    display: inline-block;
+    padding-left: 2px;
+  }
+  
+}
+input:focus{
+    outline: none;
+    box-shadow: 0 0 1px 1px #ccc;
+}
+
+.card-back{
+  border: 1px solid #e4e9ee;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 15px;
+  width: 370px;
+  height: 236px;
+  position: absolute; 
+  z-index: 0;
+  top: 65px;
+  left: 194px;
+
+  &__cvc{
+    width: 41%;
+    padding: 2px 0 0 0;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-left: 201px;
+    z-index: 10;
+  }
+  &__cvc label{
+    display: block;
+    color: #535864;
+    margin-top: -4px;
+    margin-bottom: 4px;
+    color: #8494ab;
+  }
+  &__cvc input{
+    background-image: url("icons/hint.png");
+    background-position: 93% 55%;
+    background-repeat: no-repeat;
+    border: 1px solid #e4e9ee;
+    color: #535864;
+    width: 100%;
+    font-size: 1.4em;
+    padding: 7px 7px 7px 8px;
+    font-size: 1.4em;
+  }
+}
+.line{
+  margin-top: 10px;
+  background-color: #e4e9ee;
+  width: 354px;
+  padding: 21px;
+}
+.cards__submit{
+  width: 133px;
+  height: 40px;
+  bottom: -81px;
+  position: absolute;
+  border-radius: 20px;
+  background-color: #005abf;
+  background-image: -webkit-linear-gradient(bottom, rgba(37,36,35,.18), rgba(37,36,35,0));
+  background-image: -moz-linear-gradient(bottom, rgba(37,36,35,.18), rgba(37,36,35,0));
+  background-image: -o-linear-gradient(bottom, rgba(37,36,35,.18), rgba(37,36,35,0));
+  background-image: -ms-linear-gradient(bottom, rgba(37,36,35,.18), rgba(37,36,35,0));
+  background-image: linear-gradient(to top, rgba(37,36,35,.18), rgba(37,36,35,0));
+  font-family: "Tele2 Russia Text";
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+}
+/////////////////////////////// Текстовый блок ////////////////////////
+.text-block{
+  background-color: #373c43;
+  color: #7f8591;
+  font-size: 0.750em;
+  line-height: 1.5em;
+  padding: 13px 21px 30px 0;
+
+  & p{
+    padding-top: 10px;
+  }
 }
